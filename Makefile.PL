@@ -20,6 +20,16 @@ requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::View::Mason';
 requires 'Moose';
 requires 'namespace::autoclean';
+
+# For script/populate_blog.pl
+requires 'File::chdir';
+requires 'XXX';
+requires 'autodie';
+requires 'Digest::MD5';
+requires 'File::Slurp';
+requires 'YAML';
+requires 'SQL::Translator' => '0.11006';
+
 requires 'Config::General'; # This should reflect the config file format you've chosen
                  # See Catalyst::Plugin::ConfigLoader for supported formats
 test_requires 'Test::More' => '0.88';
