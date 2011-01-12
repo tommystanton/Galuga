@@ -15,7 +15,9 @@ requires 'DateTime::Format::DateParse';
 requires 'Catalyst::Runtime' => '5.80022';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
+requires 'Catalyst::Model::DBIC::Schema';
 requires 'Catalyst::Action::RenderView';
+requires 'Catalyst::View::Mason';
 requires 'Moose';
 requires 'namespace::autoclean';
 requires 'Config::General'; # This should reflect the config file format you've chosen
