@@ -32,11 +32,13 @@ template widget => sub {
 
     script { outs_raw <<'END_SCRIPT';
 $(function(){
-    $('#recent_tags').tagcloud({ 
+    var li = $('#recent_tags').tagcloud({
         type: "list",
         colormin: "AB0404",
         colormax: "AB0404"
-    }).find('li').css('padding-right', '3px' );
+    }).find('li');
+
+    li.css('padding-right', '3px' );
 });
 END_SCRIPT
     }
