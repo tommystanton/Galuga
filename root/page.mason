@@ -1,10 +1,19 @@
 <%args>
 @syntax_highlight => ()
+# TODO Use $title instead of $entry, so that the Tags page will have a
+# title?
+$entry => undef
 </%args>
 % my $content = $m->content;
 <html>
 <head>
-    <title><% $c->config->{blog_name} %></title>
+% my $page_title = $c->config->{blog_name};
+% # Append the entry title unless we're at '/' (don't show the most
+% # recent entry's title at the home page)
+% if ( defined $entry && $c->req->path ) {
+%     $page_title = join q{ - }, $page_title, $entry->title;
+% }
+    <title><% $page_title %></title>
     <link rel="shortcut icon" href="<% $c->uri_for( '/static/favicon.png' ) %>" />
 
     <link rel="alternate" 
