@@ -18,7 +18,7 @@ $entry => undef
 
     <link rel="alternate" 
           type="application/atom+xml" 
-          title="Recent Entries" 
+          title="Recent blog entries" 
           href="<% $c->uri_for( '/atom.xml' ) %>" />
 
 

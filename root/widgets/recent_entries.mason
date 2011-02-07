@@ -10,7 +10,7 @@ my @entries = $c->model('DB::Entries')->search({},
 );
 </%perl>
 <div class="widget">
-<h3>Recent entries</h3>
+<h3>Recent blog entries</h3>
 <ul>
 % for ( @entries ) {
 <li>
