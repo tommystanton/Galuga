@@ -22,7 +22,7 @@ use Getopt::Long;
 use Galuga::Schema;
 
 GetOptions(
-    'nuke!' => sub { unlink 'db.sqlite' },
+    'nuke!' => sub { unlink "$Bin/../db.sqlite" },
 );
 
 my %conf = Config::General->new( "$Bin/../galuga.conf" )->getall;
