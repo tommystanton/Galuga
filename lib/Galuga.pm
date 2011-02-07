@@ -18,6 +18,8 @@ use Catalyst qw/
     Static::Simple
 /;
 
+use FindBin qw($Bin);
+
 extends 'Catalyst';
 
 our $VERSION = '0.01';
@@ -40,6 +42,12 @@ __PACKAGE__->config(
     static => {
                    ignore_dirs => [ 'css' ],
                },
+    'Model::DB' => {
+        connect_info => {
+            # XXX Assume that SQLite is being used
+            dsn => "dbi:SQLite:dbname=$Bin/../db.sqlite",
+        },
+    },
 );
 
 # Start the application

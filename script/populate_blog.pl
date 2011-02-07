@@ -28,6 +28,8 @@ GetOptions(
 my %conf = Config::General->new( "$Bin/../galuga.conf" )->getall;
 
 $conf{blog_root} =~ s#__HOME__#$Bin/..#;
+# XXX Assume that SQLite is being used
+$conf{db} = "dbi:SQLite:dbname=$Bin/../db.sqlite";
 
 my $schema = Galuga::Schema->connect( $conf{db} );
 
