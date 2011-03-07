@@ -33,35 +33,24 @@ sub tags :Path('tags') :Args(0) {
     my ( $self, $c ) = @_;
 
     # get all tags and their tally
-    
-    $c->stash->{tags} = {
-        map { $_->tag => $_->get_column( 'nbr_entries' ) }
-            $c->model('DB::Tags')->search( 
-        { },
-        {   group_by => 'tag',
-            order_by => 'tag',
-            select   => [ 'tag', { count => 'entry_path' } ],
-            as       => [qw/ tag nbr_entries /],
-        } )->all
-    };
+    my %tags = map { $_->label => $_->count_related( 'entry_tags' ) } $c->model('DB::Tags')->search->all;
+    my @tags = sort { $tags{$a} <=> $tags{$b} } keys %tags;
 
+    for my $i ( 0..$#tags ) {
+        $tags{$tags[$i]} = int( 24 * ($i+1) / @tags );
+    }
+    
+    $c->stash->{tags} = \%tags;
+
+    return;
 }
 
 sub entries :Path( 'entries' ) :Args(0) {
     my ( $self, $c ) = @_;
 
-
-    my $tags = $c->model('DB::Tags')->search({}, {
-             group_by => 'tag',
-              select => [
-                    'tag',
-                  { count => 'entry_path' }
-              ],
-              as => [ qw/ tag nbr_entries / ],
-         } );
-
-    $c->stash->{tags} = [ $tags->all ];
-    # the whole she-bang
+    $c->stash->{tags} = {
+        map { $_->label => $_->count_related( 'entry_tags' ) } $c->model('DB::Tags')->search->all
+    };
 
     $c->stash->{entries} = [ $c->model('DB::Entries')->search({},{order_by=>{
                 '-desc' => 'created' } } )->all ];
@@ -74,15 +63,18 @@ sub index :Path :Args(0) {
         { order_by => { '-desc' => 'created' }, limit => 1 }
     );
 
-    $c->stash->{entry} = $entry->next;
-    
-    $c->stash->{template} = '/entry/index.mason';
-
-    $c->detach( 'Entry', 'index' );
-    
+    $c->res->redirect( 
+        $c->uri_for( 'entry', $entry->next->url )
+    );
 }
 
-sub feed :Path('atom.xml') :Args(0) {
+sub sitemap :Path('sitemap') :Args(0) {
+    my ( $self, $c ) = @_;
+
+    $c->res->body( $c->sitemap_as_xml );
+}
+
+sub feed :Path('atom.xml') :Args(0) :Sitemap {
     my ( $self, $c ) = @_;
 
     # get the last 10 entries and wrap'em
@@ -98,12 +90,26 @@ sub feed :Path('atom.xml') :Args(0) {
     );
 
     for ( @entries ) {
+
+        my $body = $_->body;
+
+    # __ENTRY_DIR__
+    $body =~ s#__ENTRY_DIR__# $c->uri_for( "/entry/" . $_->url . "/files" ) #eg;
+
+    $body =~
+    s#(<galuga_code.*?</galuga_code>)#Galuga::Controller::Entry::code_snippet( $c, $_, $1 )#eg;
+
+    $body =~ s#<pre \s+ code=(['"])(.*?)\1#<pre class="brush: $2" #xg;
+
+    $body =~ s#<cpan>(.*?)</cpan>#Galuga::Controller::Entry::cpan_tag($1)#eg;
+    $body =~ s#<galuga_entry>(.*?)</galuga_entry>#Galuga::Controller::Entry::entry_tag( $c, $1)#eg;
+
         $feed->add_entry(
             title => $_->title,
             link => $c->uri_for( '/entry', $_->url ),
             content => {
                 type => 'xhtml',
-                content => $_->body,
+                content => $body,
             },
             updated => $_->created->iso8601,
         );
@@ -111,6 +117,8 @@ sub feed :Path('atom.xml') :Args(0) {
 
     $c->res->content_type( 'application/atom+xml' );
     $c->res->body( $feed->as_string );
+
+    $c->cache_page( 60 * 60 );
 }
 
 =head2 default

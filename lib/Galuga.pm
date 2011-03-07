@@ -13,16 +13,21 @@ use Catalyst::Runtime 5.80;
 #                 directory
 
 use Catalyst qw/
-    -Debug
     ConfigLoader
     Static::Simple
+    Cache 
+    Sitemap
+    VersionedURI
+    SubRequest
+    PageCache
 /;
+# PageCache
 
 use FindBin qw($Bin);
 
 extends 'Catalyst';
 
-our $VERSION = '0.01';
+our $VERSION = '0.4.0';
 $VERSION = eval $VERSION;
 
 # Configure the application.
@@ -48,6 +53,13 @@ __PACKAGE__->config(
             dsn => "dbi:SQLite:dbname=$Bin/../db.sqlite",
         },
     },
+   'Plugin::Cache' => {
+       backend => {
+           class => 'Cache::FileCache',
+       } },
+   'Plugin::PageCache' => {
+       set_http_headers => 1,
+   },
 );
 
 # Start the application

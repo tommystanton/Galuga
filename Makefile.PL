@@ -18,6 +18,12 @@ requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Model::DBIC::Schema';
 requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::View::Mason';
+requires 'CatalystX::Component::Traits' => '0.16';
+requires 'Catalyst::Plugin::PageCache';
+requires 'Catalyst::Plugin::Cache';
+requires 'Cache::FileCache';
+requires 'Catalyst::Plugin::Sitemap';
+requires 'Catalyst::Plugin::VersionedURI';
 requires 'Moose';
 requires 'namespace::autoclean';
 
