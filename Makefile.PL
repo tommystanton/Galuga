@@ -21,6 +21,7 @@ requires 'Catalyst::View::Mason';
 requires 'CatalystX::Component::Traits' => '0.16';
 requires 'Catalyst::Plugin::PageCache';
 requires 'Catalyst::Plugin::Cache';
+requires 'Catalyst::Plugin::SubRequest';
 requires 'Cache::FileCache';
 requires 'Catalyst::Plugin::Sitemap';
 requires 'Catalyst::Plugin::VersionedURI';
