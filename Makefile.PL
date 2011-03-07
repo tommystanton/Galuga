@@ -12,6 +12,7 @@ all_from 'lib/Galuga.pm';
 requires 'Template::Declare';
 requires 'DateTime::Format::SQLite';
 requires 'DateTime::Format::DateParse';
+requires 'DateTime::Format::Flexible';
 requires 'Catalyst::Runtime' => '5.80022';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
@@ -25,6 +26,8 @@ requires 'Catalyst::Plugin::SubRequest';
 requires 'Cache::FileCache';
 requires 'Catalyst::Plugin::Sitemap';
 requires 'Catalyst::Plugin::VersionedURI';
+requires 'LWP::Simple';
+requires 'JSON';
 requires 'Moose';
 requires 'namespace::autoclean';
 
