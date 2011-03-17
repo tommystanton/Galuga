@@ -36,6 +36,7 @@ requires 'namespace::autoclean';
 
 # For script/populate_blog.pl
 requires 'File::chdir';
+requires 'Text::Markdown';
 requires 'XXX';
 requires 'autodie';
 requires 'Digest::MD5';
