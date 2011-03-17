@@ -19,6 +19,7 @@ requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Model::DBIC::Schema';
 requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::View::Mason';
+requires 'HTML::Mason';
 requires 'CatalystX::Component::Traits' => '0.16';
 requires 'Catalyst::Plugin::PageCache';
 requires 'Catalyst::Plugin::Cache';
@@ -28,6 +29,8 @@ requires 'Catalyst::Plugin::Sitemap';
 requires 'Catalyst::Plugin::VersionedURI';
 requires 'LWP::Simple';
 requires 'JSON';
+requires 'XML::Feed';
+requires 'XML::Atom::SimpleFeed';
 requires 'Moose';
 requires 'namespace::autoclean';
 
