@@ -65,13 +65,18 @@ template 'tag' => sub {
 sub get_tags {
     my ( $self, $c ) = @_;
 
-    my %tags = map { $_->label => $_ } $c->model('DB::Entries')->search(
-        {},
-        {   order_by => { '-desc' => 'created' },
-            rows     => 5
-        } )->search_related( 'entry_tags' )->search_related( 'tag' )->all;
+    my $recent_tags_rs = $c->model('DB::Entries')
+        ->search( {},
+            {   order_by => { '-desc' => 'created' },
+                rows     => 5
+            } )
+        ->search_related( 'entry_tags' )
+        ->search_related( 'tag' );
+    my @recent_tags = $recent_tags_rs->all;
 
-    return values %tags;
+    my %recent_tags = map { $_->label => $_ } @recent_tags;
+
+    return values %recent_tags;
 }
 
 1;
