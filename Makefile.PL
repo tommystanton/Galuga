@@ -33,7 +33,7 @@ requires 'XML::Feed';
 requires 'XML::Atom::SimpleFeed';
 requires 'Moose';
 requires 'namespace::autoclean';
-requires 'Text::Elide';
+requires 'String::Truncate' => '1.100570';
 
 # For script/populate_blog.pl
 requires 'File::chdir';

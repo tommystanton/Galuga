@@ -13,7 +13,8 @@ my @entries = $c->model('DB::Entries')->search({},
 <h3>Recent blog entries</h3>
 <ul>
 % for ( @entries ) {
-% use Text::Elide qw( elide ); my $title = elide( $_->title, 20 );
+% use String::Truncate qw( elide );
+% my $title = elide( $_->title, 20, { truncate => 'right' } );
 <li>
 <a href="<% $c->uri_for( '/entry', $_->url ) %>"><% $title %></a>
 </li>
