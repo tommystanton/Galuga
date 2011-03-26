@@ -33,6 +33,7 @@ requires 'XML::Feed';
 requires 'XML::Atom::SimpleFeed';
 requires 'Moose';
 requires 'namespace::autoclean';
+requires 'Text::Elide';
 
 # For script/populate_blog.pl
 requires 'File::chdir';
