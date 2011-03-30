@@ -31,6 +31,7 @@ requires 'LWP::Simple';
 requires 'JSON';
 requires 'XML::Feed';
 requires 'XML::Atom::SimpleFeed';
+requires 'Catalyst::View::Mason';
 requires 'Moose';
 requires 'namespace::autoclean';
 requires 'String::Truncate' => '1.100570';
