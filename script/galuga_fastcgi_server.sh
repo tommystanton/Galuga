@@ -55,7 +55,13 @@ start() {
     fi
     # Start daemons.
     echo -n $"Starting Galuga: "
-    touch ${LOGFILE}
+
+    if [ "$USER"x != "$EXECUSER"x ]; then
+      $SU $EXECUSER -c "cd ${EXECDIR} && touch ${LOGFILE}"
+    else
+      cd ${EXECDIR} && touch ${LOGFILE}
+    fi
+
     echo -n "["`date +"%Y-%m-%d %H:%M:%S"`"] " >> ${LOGFILE}
     if [ "$USER"x != "$EXECUSER"x ]; then
       $SU $EXECUSER -c "(export PATH=$PATH;cd ${EXECDIR};script/galuga_fastcgi.pl -n ${PROCS} -l ${SOCKET} -p ${PID} -d >> ${LOGFILE} 2>&1)"
