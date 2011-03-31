@@ -64,7 +64,7 @@ start() {
 
     echo -n "["`date +"%Y-%m-%d %H:%M:%S"`"] " >> ${LOGFILE}
     if [ "$USER"x != "$EXECUSER"x ]; then
-      $SU $EXECUSER -c "(export PATH=$PATH;cd ${EXECDIR};script/galuga_fastcgi.pl -n ${PROCS} -l ${SOCKET} -p ${PID} -d >> ${LOGFILE} 2>&1)"
+      $SU $EXECUSER -c "(export PATH=$PATH;cd ${EXECDIR} && script/galuga_fastcgi.pl -n ${PROCS} -l ${SOCKET} -p ${PID} -d >> ${LOGFILE} 2>&1)"
     else
       cd ${EXECDIR}
       script/galuga_fastcgi.pl -n ${PROCS} -l ${SOCKET} -p ${PID} -d >> ${LOGFILE} 2>&1
