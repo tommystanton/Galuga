@@ -79,7 +79,7 @@ stop() {
   # Stop daemons.
   echo -n $"Shutting down Galuga: "
   echo -n "["`date +"%Y-%m-%d %H:%M:%S"`"] " >> ${LOGFILE}
-  /bin/kill `cat $PID 2>/dev/null ` >/dev/null 2>&1 && (success; echo "Stoped" >> ${LOGFILE} ) || (failure $"$prog stop";echo "Stop failed" >> ${LOGFILE} )
+  /bin/kill `cat $PID 2>/dev/null ` >/dev/null 2>&1 && (success; echo "Stopped" >> ${LOGFILE} ) || (failure $"$prog stop";echo "Stop failed" >> ${LOGFILE} )
   /bin/rm $PID >/dev/null 2>&1
   RETVAL=$?
   echo
