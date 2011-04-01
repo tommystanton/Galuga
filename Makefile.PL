@@ -27,6 +27,7 @@ requires 'Catalyst::Plugin::SubRequest';
 requires 'Cache::FileCache';
 requires 'Catalyst::Plugin::Sitemap';
 requires 'Catalyst::Plugin::VersionedURI';
+requires 'File::Slurp';
 requires 'LWP::Simple';
 requires 'JSON';
 requires 'XML::Feed';
@@ -36,12 +37,11 @@ requires 'Moose';
 requires 'namespace::autoclean';
 requires 'String::Truncate' => '1.100570';
 
-# For script/populate_blog.pl
+# Also needed for script/populate_blog.pl
 requires 'File::chdir';
 requires 'XXX';
 requires 'autodie';
 requires 'Digest::MD5';
-requires 'File::Slurp';
 requires 'YAML';
 requires 'SQL::Translator' => '0.11006';
 recommends 'Text::Markdown';
