@@ -45,8 +45,9 @@ __PACKAGE__->config(
     disable_component_resolution_regex_fallback => 1,
     default_view => 'Mason',
     static => {
-                   ignore_dirs => [ 'css' ],
-               },
+        ignore_extensions => [ 'mason' ],
+        ignore_dirs => [ 'css' ],
+    },
     'Model::DB' => {
         connect_info => {
             # XXX Assume that SQLite is being used
