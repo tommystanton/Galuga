@@ -14,9 +14,12 @@ my @entries = $c->model('DB::Entries')->search({},
 <ul>
 % for ( @entries ) {
 % use String::Truncate qw( elide );
-% my $title = elide( $_->title, 20, { truncate => 'right' } );
-<li>
-<a href="<% $c->uri_for( '/entry', $_->url ) %>"><% $title %></a>
+% my $title = $_->title;
+% my $title_truncated = elide( $title, 20, { truncate => 'right' } );
+<li title="<% $title %>">
+<a href="<% $c->uri_for( '/entry', $_->url ) %>">
+    <% $title_truncated %>
+</a>
 </li>
 % }
 </ul>
