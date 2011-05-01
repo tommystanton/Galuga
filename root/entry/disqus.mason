@@ -2,10 +2,10 @@
 $identifier
 </%args>
 
-%# don't even bother if it's a dev version,
-%# as it seems to mess up the disqus system
-% return if $c->config->{disqus}{development};
-
+% # Do not attempt to load Disqus if we are not running at the expected
+% # URI base (which implies that we are not in production)
+% my $blog_url = $c->config->{blog_url};
+% return if $c->request->base !~ /^$blog_url/;
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
