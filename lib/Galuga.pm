@@ -20,6 +20,7 @@ use Catalyst qw/
     VersionedURI
     SubRequest
     PageCache
+    Compress::Gzip
 /;
 # PageCache
 

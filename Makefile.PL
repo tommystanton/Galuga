@@ -16,6 +16,7 @@ requires 'DateTime::Format::Flexible';
 requires 'Catalyst::Runtime' => '5.80022';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
+requires 'Catalyst::Plugin::Compress::Gzip';
 requires 'Catalyst::Model::DBIC::Schema';
 requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::View::Mason';
