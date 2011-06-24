@@ -9,7 +9,10 @@
 % $m->print( join ', ', map { "<i>$_</i>" } @selected_tags );
 </h2>
 
-% for ( @entries ) {
+% # Sort entries by date created, descending
+% # XXX Should this be done in the Controller with DBIC (for
+% # performance) instead?
+% for ( sort { $b->created <=> $a->created } @entries ) {
 <div><a href="<% $c->uri_for( '/entry', $_->url ) %>"><% $_->title %></a>,
 <% $_->created->strftime("%a, %b %e %Y") %>
 % if ( $_->created != $_->last_updated ) {
