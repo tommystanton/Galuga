@@ -45,11 +45,11 @@ requires 'autodie';
 requires 'Digest::MD5';
 requires 'YAML';
 requires 'SQL::Translator' => '0.11006';
-recommends 'Text::Markdown';
+requires 'Text::Markdown';
 
 # For script/galuga_fastcgi_server.sh
-recommends 'FCGI';
-recommends 'FCGI::ProcManager';
+requires 'FCGI';
+requires 'FCGI::ProcManager';
 
 requires 'Config::General'; # This should reflect the config file format you've chosen
                  # See Catalyst::Plugin::ConfigLoader for supported formats
