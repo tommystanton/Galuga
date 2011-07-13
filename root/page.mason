@@ -61,9 +61,7 @@ $entry => undef
 
 </div>
 
-
-<div class="footer" style="clear: both">
-</div>
+<& footer.mason &>
 
 </body>
 </html>
