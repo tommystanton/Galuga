@@ -1,6 +1,9 @@
 <%args>
 $nbr_entries => 5
 </%args>
+<%once>
+use String::Truncate qw( elide );
+</%once>
 <%perl>
 my @entries = $c->model('DB::Entries')->search({},
     {
@@ -13,7 +16,6 @@ my @entries = $c->model('DB::Entries')->search({},
 <h3>Recent entries</h3>
 <ul>
 % for ( @entries ) {
-% use String::Truncate qw( elide );
 % my $title = $_->title;
 % my $title_truncated = elide( $title, 20, { truncate => 'right' } );
 <li title="<% $title %>">

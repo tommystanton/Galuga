@@ -6,6 +6,10 @@ $body
 
 <&| /page.mason, %ARGS &>
 
+<%once>
+use URI::Escape qw( uri_escape );
+</%once>
+
 <div class="blog_entry">
 <h2><a href="<% $c->uri_for( '/entry', $entry->url ) %>"><% $entry->title %></a></h2>
 
@@ -46,7 +50,6 @@ $entry
 </%args>
 <div class="tags">
 <b>tags: </b>
-% use URI::Escape qw( uri_escape );
 % $m->print( join ', ', 
 % map { "<a href='" . $c->uri_for( "/tag/" . uri_escape($_) ) . "'>$_</a>" } 
 % sort $entry->tags->get_column( 'label' )->all );
