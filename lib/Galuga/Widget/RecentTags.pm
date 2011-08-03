@@ -6,6 +6,8 @@ use warnings;
 use Template::Declare::Tags;
 use base 'Template::Declare';
 
+use URI::Escape qw( uri_escape );
+
 template widget => sub {
     my $self = shift;
     my %arg  = @_;
@@ -56,7 +58,7 @@ template 'tag' => sub {
             title => $arg{tag}->label
         };
         a {
-            attr { href => $arg{c}->uri_for( '/tag', $arg{tag}->label ) };
+            attr { href => $arg{c}->uri_for( '/tag', uri_escape( $arg{tag}->label ) ) };
             $arg{tag}->label;
         }
     }

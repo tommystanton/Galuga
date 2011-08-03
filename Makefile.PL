@@ -37,6 +37,7 @@ requires 'Catalyst::View::Mason';
 requires 'Moose';
 requires 'namespace::autoclean';
 requires 'String::Truncate' => '1.100570';
+requires 'URI::Escape';
 
 # Also needed for script/populate_blog.pl
 requires 'File::chdir';

@@ -7,9 +7,10 @@
 
 <div style="padding: 20px">
 <ul id="tagcloud">
+% use URI::Escape qw( uri_escape );
 % for ( sort { lc($a) cmp lc($b) } keys %tags ) {
     <li value="<% $tags{$_}  %>" title="<% $_ %>"> <a href="<%
-    $c->uri_for( '/tag', $_ ) %>"><% $_ %></a></li>
+    $c->uri_for( '/tag', uri_escape($_) ) %>"><% $_ %></a></li>
 % }
 </ul></div>
 <script type="text/javascript">
