@@ -1,4 +1,14 @@
 #!/bin/bash
+### BEGIN INIT INFO
+# Provides:          galuga
+# Required-Start:    $all
+# Required-Stop:     $nginx
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Galuga blogging software
+# Description:       Galuga is the Gamboling Beluga,
+#        Perl-powered blogging software by Yanick Champoux
+### END INIT INFO
 #
 # galuga_fastcgi_server.sh : galuga fastcgi daemon start/stop script
 #
