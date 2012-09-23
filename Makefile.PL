@@ -44,6 +44,7 @@ requires 'File::chdir';
 requires 'XXX';
 requires 'autodie';
 requires 'Digest::MD5';
+requires 'HTML::Entities';
 requires 'YAML';
 requires 'SQL::Translator' => '0.11006';
 requires 'Text::Markdown';

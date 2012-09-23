@@ -14,6 +14,7 @@ use XXX;
 use autodie;
 use Digest::MD5 qw/ md5_hex /;
 use File::Slurp qw/ slurp /;
+use HTML::Entities qw/ encode_entities /;
 use YAML;
 use DateTime::Format::DateParse;
 
@@ -110,6 +111,9 @@ sub import_entry {
     my $module = 'Galuga::Format::' . $format;
     eval "use $module";
 
+    # Escape ampersands, but avoid characters like '<' or '>' since
+    # there may be inline HTML in the blog entry
+    $body = encode_entities( $body, '&' );
     $entry->body( '<div>'.$module->render( $body ).'</div>' );
 
     use XML::LibXML;
